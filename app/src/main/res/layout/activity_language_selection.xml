@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <!-- Background Image -->
+    <ImageView
+        android:id="@+id/backgroundImage"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:src="@drawable/background"
+        android:scaleType="fitXY"
+        android:adjustViewBounds="true"
+        android:layout_alignParentTop="true"
+        android:alpha="0.8"/>
+
+    <!-- Semi-Transparent Overlay (Optional for better visibility) -->
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#80000000"/>
+
+    <!-- Centered Content -->
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_centerInParent="true">
+
+        <!-- Select Language Title -->
+        <TextView
+            android:id="@+id/selectLanguageTitle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Select Language"
+            android:textSize="18sp"
+            android:textColor="#FFFFFF"
+            android:textStyle="bold"
+            android:layout_marginBottom="20dp"/>
+
+        <!-- Language Dropdown -->
+        <Spinner
+            android:id="@+id/languageSpinner"
+            android:layout_width="250dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/spinner_border"
+            android:padding="10dp"
+            android:layout_marginBottom="30dp"/>
+
+        <!-- Get Started Button -->
+        <Button
+            android:id="@+id/getStartedButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="#FFA500"
+            android:textColor="#FFFFFF"
+            android:text="Get Started"
+            android:textStyle="bold"
+            android:padding="12dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

@@ -1,0 +1,27 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.bhagavadgitaapp">
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="Bhagavad Gita App"
+        android:theme="@style/Theme.AppCompat.Light">
+
+        <!-- Declare SplashActivity and specify android:exported -->
+        <activity android:name=".SplashActivity"
+            android:exported="true"> <!-- Set android:exported to true -->
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
+        <!-- Declare other activities -->
+        <activity android:name=".LanguageSelectionActivity"
+            android:exported="true" /> <!-- Add android:exported for other activities as well -->
+        <activity android:name=".MainMenuActivity"
+            android:exported="true" />
+
+    </application>
+
+</manifest>
