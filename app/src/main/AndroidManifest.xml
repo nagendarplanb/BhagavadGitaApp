@@ -4,23 +4,24 @@
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Bhagavad Gita App"
-        android:theme="@style/Theme.AppCompat.Light">
+        android:label="Bhagavad Gita"
+        android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
 
-        <!-- Declare SplashActivity and specify android:exported -->
+        <!-- Splash Screen -->
         <activity android:name=".SplashActivity"
-            android:exported="true"> <!-- Set android:exported to true -->
+            android:exported="true"
+            android:theme="@style/Theme.Splash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
-        <!-- Declare other activities -->
+        <!-- Other Activities -->
         <activity android:name=".LanguageSelectionActivity"
-            android:exported="true" /> <!-- Add android:exported for other activities as well -->
+            android:exported="false" />
         <activity android:name=".MainMenuActivity"
-            android:exported="true" />
+            android:exported="false" />
 
     </application>
 

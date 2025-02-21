@@ -1,4 +1,8 @@
-<?xml version="1.0" encoding="utf-8"?>
-<selector xmlns:android="http://schemas.android.com/apk/res/android">
-
-</selector>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:drawable="@color/white" />  <!-- Set your background color -->
+    <item>
+        <bitmap
+            android:gravity="center"
+            android:src="@drawable/krishna" /> <!-- Replace with your splash image -->
+    </item>
+</layer-list>
