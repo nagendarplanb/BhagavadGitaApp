@@ -1,3 +1,4 @@
 <resources>
-    <string name="app_name">BhagavadGitaApp</string>
+    <string name="app_name">BhagavadGita</string>
+    <string name="app_title">భగవద్గీత</string>
 </resources>
