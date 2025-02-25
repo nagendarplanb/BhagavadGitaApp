@@ -67,13 +67,12 @@
                 android:layout_height="wrap_content"
                 android:text="User-selected translation will be loaded here."
                 android:textSize="18sp"
-                android:textColor="#1A5276"
+                android:textColor="#444444"
                 android:gravity="center"
                 android:padding="10dp"
                 android:textAlignment="center"
                 android:lineSpacingExtra="5dp"
-                android:ellipsize="none"
-                android:minHeight="80dp"/>
+                android:ellipsize="none"/>
         </LinearLayout>
     </ScrollView>
 
