@@ -38,7 +38,7 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "Login Successful!", Toast.LENGTH_SHORT).show()
 
                 // Navigate to Main Menu
-                val intent = Intent(this, MainMenuActivity::class.java)
+                val intent = Intent(this, LanguageSelectionActivity::class.java)
                 startActivity(intent)
                 finish()
             }
