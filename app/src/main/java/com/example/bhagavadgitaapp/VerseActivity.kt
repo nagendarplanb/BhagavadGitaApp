@@ -1,11 +1,17 @@
 package com.example.bhagavadgitaapp
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AlphaAnimation
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
+import android.content.Context
+import android.content.res.ColorStateList
+import android.util.Log
+import org.json.JSONObject
+import android.graphics.Color
 
 class VerseActivity : AppCompatActivity() {
 
@@ -15,33 +21,27 @@ class VerseActivity : AppCompatActivity() {
     private lateinit var buttonPrevious: Button
     private lateinit var buttonNext: Button
     private lateinit var buttonPlayPause: ImageButton
-    private lateinit var verseTitle: TextView  // New Title for Sloka
+    private lateinit var verseTitle: TextView
 
     private var currentVerse = 1
-    private var totalVerses = 47
+    private val totalVerses = 47
     private var chapterNumber = 1
-    private var isPlaying = false // Track Play/Pause state
+    private var isPlaying = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_verse) // Ensure this matches the XML filename
+        setContentView(R.layout.activity_verse)
 
-        // ✅ **Make sure IDs match with `activity_verse.xml`**
         verseTitle = findViewById(R.id.verseTitle)
-        textSanskrit = findViewById(R.id.sanskritVerse) // Fixed ID
-        textEnglish = findViewById(R.id.englishTranslation) // Fixed ID
-        textSelectedLanguage = findViewById(R.id.selectedLanguageTranslation) // Fixed ID
-        buttonPrevious = findViewById(R.id.previousButton) // Fixed ID
+        textSanskrit = findViewById(R.id.sanskritVerse)
+        textEnglish = findViewById(R.id.englishTranslation)
+        textSelectedLanguage = findViewById(R.id.selectedLanguageTranslation)
+        buttonPrevious = findViewById(R.id.previousButton)
         buttonNext = findViewById(R.id.nextButton)
         buttonPlayPause = findViewById(R.id.buttonPlayPause)
 
-        chapterNumber = intent.getIntExtra("CHAPTER_NUMBER", -1)
-
-        if (chapterNumber == -1) {
-            textSanskrit.text = "Error: Chapter not found"
-            textEnglish.text = "Please go back and try again."
-            return
-        }
+        chapterNumber = intent.getIntExtra("CHAPTER_NUMBER", 1)
+        currentVerse = intent.getIntExtra("VERSE_NUMBER", 1)
 
         loadVerse()
 
@@ -53,10 +53,9 @@ class VerseActivity : AppCompatActivity() {
         }
 
         buttonNext.setOnClickListener {
-            if (currentVerse < totalVerses) {
-                currentVerse++
-                loadVerse()
-            }
+            currentVerse++
+            Log.d("VerseActivity", "Next Verse: $currentVerse") // ✅ Debugging log
+            loadVerse() // Reload with new verse number
         }
 
         buttonPlayPause.setOnClickListener {
@@ -65,53 +64,106 @@ class VerseActivity : AppCompatActivity() {
     }
 
     private fun loadVerse() {
-        val verseData = getVerseData(chapterNumber, currentVerse)
 
-        // ✅ Update Title
-        verseTitle.text = "Sloka $currentVerse"
+        val verseTitleTextView = findViewById<TextView>(R.id.verseTitle) // Get title TextView
+        supportActionBar?.title = "Sloka $currentVerse" // ✅ Update ActionBar title
+        verseTitleTextView.text = "Sloka $currentVerse" // ✅ Update TextView title
 
-        textSanskrit.text = verseData.sanskrit
-        textEnglish.text = verseData.english
-        textSelectedLanguage.text = verseData.selectedLanguage
+        Log.d("VerseActivity", "Loading Verse: $currentVerse") // ✅ Debugging log
 
+        supportActionBar?.title = "Sloka $currentVerse"
+        // Load JSON from assets
+        val jsonString = applicationContext.assets.open("verses.json").bufferedReader().use { it.readText() }
+        val jsonObject = JSONObject(jsonString)
+
+        // ✅ Directly access "verses" (since chapter is a separate key)
+        val versesData = jsonObject.optJSONObject("verses")
+        if (versesData == null) {
+            Log.e("VerseActivity", "Error: Verses object not found!")
+            return
+        }
+
+        // ✅ Ensure the verse exists in JSON
+        val verseData = versesData.optJSONObject(currentVerse.toString())
+        if (verseData == null) {
+            Log.e("VerseActivity", "Error: Verse $currentVerse not found in JSON!")
+            return
+        }
+
+        // ✅ Log retrieved Sanskrit verse for debugging
+        Log.d("VerseActivity", "Verse Data: ${verseData.getString("sanskrit")}")
+
+        // ✅ Update UI with Sanskrit, English, and selected language translation
+        textSanskrit.text = verseData.getString("sanskrit")
+        textEnglish.text = verseData.getString("english")
+
+        val selectedLanguage = getSelectedLanguage() // Function to get saved user language
+        textSelectedLanguage.text = verseData.optString(selectedLanguage, "Translation not available")
+
+        // ✅ Enable/Disable Previous button correctly
         buttonPrevious.isEnabled = currentVerse > 1
-        buttonNext.isEnabled = currentVerse < totalVerses
+        buttonPrevious.alpha = if (currentVerse > 1) 1.0f else 0.5f
+
+        if (currentVerse > 1) {
+            buttonPrevious.isEnabled = true
+            buttonPrevious.setTextColor(Color.WHITE) // Match Next button text color
+            buttonPrevious.backgroundTintList = ColorStateList.valueOf(Color.BLUE) // Match Next button color immediately
+        } else {
+            buttonPrevious.isEnabled = false
+            buttonPrevious.setTextColor(Color.GRAY) // Gray text when disabled
+            buttonPrevious.backgroundTintList = ColorStateList.valueOf(Color.BLUE) // Light gray background
+        }
+
+        if (currentVerse < 47) {
+            buttonNext.isEnabled = true
+            buttonNext.setTextColor(Color.WHITE) // Ensure enabled state is same as previous button
+            buttonNext.backgroundTintList = buttonPrevious.backgroundTintList // Match Previous button color
+        } else {
+            buttonNext.isEnabled = false
+            buttonNext.setTextColor(Color.GRAY) // Gray text when disabled
+            buttonNext.backgroundTintList = ColorStateList.valueOf(Color.BLUE) // Light blue background
+        }
+    }
+
+    private fun navigateToVerse(verseNumber: Int) {
+        val intent = Intent(this, VerseActivity::class.java)
+        intent.putExtra("CHAPTER_NUMBER", chapterNumber)
+        intent.putExtra("VERSE_NUMBER", verseNumber)
+        startActivity(intent)
+        finish()
     }
 
     private fun togglePlayPause() {
         isPlaying = !isPlaying
 
-        // ✅ **Animation Effect**
         val fadeAnimation = AlphaAnimation(0.3f, 1.0f)
         fadeAnimation.duration = 300
         buttonPlayPause.startAnimation(fadeAnimation)
 
-        // ✅ **Toggle Play/Pause Image**
         if (isPlaying) {
-            buttonPlayPause.setImageResource(R.drawable.ic_pause) // Show Pause
+            buttonPlayPause.setImageResource(R.drawable.ic_pause)
         } else {
-            buttonPlayPause.setImageResource(R.drawable.ic_play) // Show Play
+            buttonPlayPause.setImageResource(R.drawable.ic_play)
         }
     }
 
-    private fun getVerseData(chapter: Int, verse: Int): VerseData {
-        val selectedLanguage = getSelectedLanguage() // Fetch from SharedPreferences
-        return VerseData(
-            sanskrit = "धृतराष्ट्र उवाच | धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः | मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ||",
-            english = getTranslation(chapter, verse, "english"),
-            selectedLanguage = getTranslation(chapter, verse, selectedLanguage)
-        )
-    }
+    private fun getVerseData(chapter: Int, verse: Int, language: String): VerseData {
+        val jsonString = applicationContext.assets.open("verses.json").bufferedReader().use { it.readText() }
+        val jsonObject = JSONObject(jsonString)
 
-    private fun getTranslation(chapter: Int, verse: Int, language: String): String {
-        val translations = mapOf(
-            "hindi" to "धृतराष्ट्र ने कहा: हे संजय, मेरे पुत्रों और पांडवों ने धर्मक्षेत्र कुरुक्षेत्र में क्या किया?",
-            "telugu" to "ధృతరాష్ట్రుడు చెప్పెను: ఓ సంజయ, నా కుమారులు మరియు పాండవులు ధర్మక్షేత్రంలో ఏమి చేసారు?",
-            "tamil" to "திருதராஷ்டிரன் கூறினான்: ஓ சஞ்சயா, என் மகன்களும் பாண்டவர்களும் குறுக்ஷேத்ரத்தில் என்ன செய்தார்கள்?",
-            "kannada" to "ಧೃತರಾಷ್ಟ್ರನು ಹೇಳಿದನು: ಓ ಸಂಜಯ, ನನ್ನ ಮಕ್ಕಳೂ ಪಾಂಡವರೂ ಕುರುಕ್ಷೇತ್ರದಲ್ಲಿ ಏನು ಮಾಡಿದರು?",
-            "english" to "Dhritarashtra said: O Sanjaya, what did my sons and the sons of Pandu do at the holy land of Kurukshetra?"
+        val chapterData = jsonObject.getJSONObject(chapter.toString())
+
+        if (!chapterData.has(verse.toString())) {
+            throw IllegalArgumentException("Verse $verse not found in Chapter $chapter")
+        }
+
+        val verseData = chapterData.getJSONObject(verse.toString())
+
+        return VerseData(
+            sanskrit = verseData.getString("sanskrit"),
+            english = verseData.getString("english"),
+            selectedLanguage = verseData.optString(language, "Translation not available")
         )
-        return translations[language.lowercase()] ?: "Translation not available"
     }
 
     private fun getSelectedLanguage(): String {

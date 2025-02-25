@@ -24,10 +24,10 @@ class LanguageSelectionActivity : AppCompatActivity() {
             val selectedLanguage = languageSpinner.selectedItem.toString()
 
             if (selectedLanguage != "Select Language") {
-                // ✅ Save selected language
-                val sharedPreferences: SharedPreferences = getSharedPreferences("AppPrefs", MODE_PRIVATE)
+                // ✅ Convert language name to lowercase before saving
+                val sharedPreferences: SharedPreferences = getSharedPreferences("AppSettings", MODE_PRIVATE)
                 val editor = sharedPreferences.edit()
-                editor.putString("selectedLanguage", selectedLanguage)
+                editor.putString("language", selectedLanguage.lowercase()) // Fix key and lowercase
                 editor.apply()
 
                 // ✅ Move to MainMenuActivity
