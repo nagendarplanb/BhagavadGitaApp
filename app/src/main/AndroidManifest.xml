@@ -26,6 +26,13 @@
         <activity android:name=".SignUpActivity"
             android:exported="true"/>
 
+        <activity android:name=".ChapterActivity"/>
+
+        <activity android:name=".LanguageSelectionActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name=".VerseActivity" />
+
     </application>
 
 </manifest>

@@ -1,0 +1,196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="16dp">
+
+    <!-- Back Button -->
+    <ImageButton
+        android:id="@+id/backButton"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:src="@drawable/ic_back_arrow"
+        android:background="?attr/selectableItemBackgroundBorderless"
+        android:layout_margin="10dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"/>
+
+    <!-- Scrollable Content for Chapter Buttons -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/backButton">
+
+        <LinearLayout
+            android:id="@+id/homeContent"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+
+            <!-- Chapter Buttons -->
+            <Button
+                android:id="@+id/button_chapter_1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 1"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 2"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 3"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 4"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 5"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 6"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 7"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 8"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 9"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 10"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 11"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_12"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 12"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_13"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 13"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_14"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 14"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 15"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_16"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 16"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_17"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 17"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/button_chapter_18"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Chapter 18"
+                android:textColor="#FFFFFF"
+                android:backgroundTint="#FFA500"
+                android:layout_marginBottom="10dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+</RelativeLayout>

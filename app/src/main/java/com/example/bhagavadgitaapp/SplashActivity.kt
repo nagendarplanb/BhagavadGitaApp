@@ -15,7 +15,7 @@ class SplashActivity : AppCompatActivity() {
 
         // ✅ Now ImageView and TextView will be recognized
         val krishnaImageView: ImageView = findViewById(R.id.krishnaImageView)
-        val appNameTextView: TextView = findViewById(R.id.appNameTextView)
+        //val appNameTextView: TextView = findViewById(R.id.appNameTextView)
 
         // Set Krishna Image
         krishnaImageView.setImageResource(R.drawable.krishna)

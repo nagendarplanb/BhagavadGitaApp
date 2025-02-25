@@ -1,0 +1,119 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <!-- Title: Sloka 1 -->
+    <TextView
+        android:id="@+id/verseTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Sloka 1"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        android:textColor="#000000"
+        android:layout_gravity="center"/>
+
+    <!-- Scrollable Content -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:fillViewport="true"
+        android:scrollbars="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="16dp">
+
+            <!-- Sanskrit Verse -->
+            <TextView
+                android:id="@+id/sanskritVerse"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="धृतराष्ट्र उवाच | धर्मक्षेत्रे कुरुक्षेत्रे समवेता युयुत्सवः | मामकाः पाण्डवाश्चैव किमकुर्वत सञ्जय ||"
+                android:textSize="22sp"
+                android:textColor="#8B0000"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:lineSpacingExtra="5dp"
+                android:ellipsize="none"
+                android:minHeight="100dp"/>
+
+            <!-- English Translation -->
+            <TextView
+                android:id="@+id/englishTranslation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dhritarashtra said: O Sanjaya, what did my sons and the sons of Pandu do when they assembled for battle at the holy land of Kurukshetra?"
+                android:textSize="18sp"
+                android:textColor="#444444"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:lineSpacingExtra="5dp"
+                android:ellipsize="none" />
+
+            <!-- User-selected Language Translation -->
+            <TextView
+                android:id="@+id/selectedLanguageTranslation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="User-selected translation will be loaded here."
+                android:textSize="18sp"
+                android:textColor="#1A5276"
+                android:gravity="center"
+                android:padding="10dp"
+                android:textAlignment="center"
+                android:lineSpacingExtra="5dp"
+                android:ellipsize="none"
+                android:minHeight="80dp"/>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Bottom Navigation -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:paddingTop="20dp">
+
+        <!-- Previous Button -->
+        <Button
+            android:id="@+id/previousButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Previous"
+            android:backgroundTint="#D3D3D3"
+            android:textColor="#FFFFFF"
+            android:enabled="false"/>
+
+        <!-- Play/Pause Button -->
+        <ImageButton
+            android:id="@+id/buttonPlayPause"
+            android:layout_width="60dp"
+            android:layout_height="60dp"
+            android:src="@drawable/ic_play"
+            android:background="?android:attr/selectableItemBackground"
+            android:contentDescription="Play/Pause"
+            android:scaleType="fitCenter"
+            android:layout_marginHorizontal="16dp"/>
+
+        <!-- Next Button -->
+        <Button
+            android:id="@+id/nextButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Next"
+            android:backgroundTint="#6A0DAD"
+            android:textColor="#FFFFFF"/>
+    </LinearLayout>
+
+</LinearLayout>
